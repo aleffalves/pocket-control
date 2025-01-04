@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.0.2"
+ruby "3.4.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
@@ -42,6 +42,29 @@ gem "bootsnap", require: false
 
 gem 'bootstrap', '~> 5.0'
 gem 'sassc-rails'
+gem 'benchmark', '0.4.0'
+gem 'bigdecimal', '3.1.9'
+gem 'concurrent-ruby', '1.3.4'
+gem 'connection_pool', '2.4.1'
+gem 'websocket', '1.2.11'
+gem 'tilt', '2.5.0'
+gem 'rubyzip', '2.4'
+gem 'thor', '1.3.2'
+gem 'ffi','1.17.1'
+gem 'io-console' ,'0.8.0'
+gem 'stringio', '3.1.2'
+gem 'regexp_parser', '2.10.0'
+gem 'popper_js'
+gem 'msgpack'
+gem 'bindex'
+gem 'execjs'
+gem 'public_suffix'
+gem 'date'
+gem 'mini_mime'
+gem 'marcel'
+gem 'timeout'
+gem 'zeitwerk'
+gem 'nokogiri', '>= 1.12.0'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -64,7 +87,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '1.5.9'
 end
 
 group :test do
