@@ -1,0 +1,9 @@
+<tr>
+  <td class="w-100 align-content-center"><%= categorium.nome %></td>
+  <td><%= link_to 'Editar', edit_categorium_path(categorium), class: "btn btn-primary"%></td>
+  <td>
+      <%= button_to "Deletar", categorium,
+          data: { turbo_confirm: "Tem certeza que deseja remover a categoria #{categorium.nome}?" },  
+          method: :delete, class:"btn btn-danger" %>
+  </td>
+</tr>

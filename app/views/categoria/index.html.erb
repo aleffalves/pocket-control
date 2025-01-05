@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h3 class="text-center mt-4 mb-4">Categorias</h3>
+
+<table class="table table-bordered table-hover">
+  <tbody>
+    <%= render @categoria %>
+  </tbody>
+</table>
+
+<%= link_to "Criar", new_categorium_path, class: "btn btn-primary" %>
