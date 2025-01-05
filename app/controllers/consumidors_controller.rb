@@ -22,10 +22,11 @@ class ConsumidorsController < ApplicationController
   # POST /consumidors or /consumidors.json
   def create
     @consumidor = Consumidor.new(consumidor_params)
+    @consumidor.usuario_id = Usuario.first.id
 
     respond_to do |format|
       if @consumidor.save
-        format.html { redirect_to @consumidor, notice: "Consumidor was successfully created." }
+        format.html { redirect_to @consumidor, notice: "Consumidor foi criado com sucesso." }
         format.json { render :show, status: :created, location: @consumidor }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class ConsumidorsController < ApplicationController
   def update
     respond_to do |format|
       if @consumidor.update(consumidor_params)
-        format.html { redirect_to @consumidor, notice: "Consumidor was successfully updated." }
+        format.html { redirect_to @consumidor, notice: "Consumidor foi atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @consumidor }
       else
         format.html { render :edit, status: :unprocessable_entity }

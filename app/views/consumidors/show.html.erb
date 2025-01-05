@@ -1,10 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @consumidor %>
+<table class="table table-bordered table-hover">
+  <tbody>
+    <%= render @consumidor %>
+  </tbody>
+</table>
 
 <div>
-  <%= link_to "Edit this consumidor", edit_consumidor_path(@consumidor) %> |
-  <%= link_to "Back to consumidors", consumidors_path %>
-
-  <%= button_to "Destroy this consumidor", @consumidor, method: :delete %>
+  <%= link_to "Voltar", consumidors_path, class: "btn btn-primary" %>
 </div>

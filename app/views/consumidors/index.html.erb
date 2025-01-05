@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<h3 class="text-center mt-4">Consumidor</h3>
+<h3 class="text-center mt-4 mb-4">Consumidores</h3>
 
-<div id="consumidors">
-  <% @consumidors.each do |consumidor| %>
-    <%= render consumidor %>
-    <p>
-      <%= link_to "Show this consumidor", consumidor %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-bordered table-hover">
+  <tbody>
+    <%= render @consumidors %>
+  </tbody>
+</table>
 
-<%= link_to "New consumidor", new_consumidor_path %>
+<%= link_to "Criar", new_consumidor_path, class: "btn btn-primary" %>

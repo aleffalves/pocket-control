@@ -1,6 +1,9 @@
-<div id="<%= dom_id consumidor %>">
-  <p>
-    <strong>Nome:</strong>
-    <%= consumidor.nome %>
-  </p>
-</div>
+<tr>
+  <td class="w-100 align-content-center"><%= consumidor.nome %></td>
+  <td><%= link_to 'Editar', edit_consumidor_path(consumidor), class: "btn btn-primary"%></td>
+  <td>
+      <%= button_to "Deletar", consumidor,
+          data: { turbo_confirm: "Tem certeza que deseja remover o consumidor #{consumidor.nome}?" },  
+          method: :delete, class:"btn btn-danger" %>
+  </td>
+</tr>

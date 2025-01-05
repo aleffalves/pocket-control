@@ -12,15 +12,12 @@
   <% end %>
 
   <div>
-    <%= form.label :nome, style: "display: block" %>
-    <%= form.text_field :nome %>
+    <%= form.label :nome, class: "form label mb-2", style: "display: block" %>
+    <%= form.text_field :nome, class: "form-control mb-3" %>
   </div>
 
   <div>
-    <%form.text_field :usuario_id, value: Usuario.first&.id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit texto_da_acao, class:"btn btn-primary" %>
+    <%= link_to "Voltar", consumidors_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
