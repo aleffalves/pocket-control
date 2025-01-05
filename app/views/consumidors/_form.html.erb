@@ -1,0 +1,26 @@
+<%= form_with(model: consumidor) do |form| %>
+  <% if consumidor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(consumidor.errors.count, "error") %> prohibited this consumidor from being saved:</h2>
+
+      <ul>
+        <% consumidor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%form.text_field :usuario_id, value: Usuario.first&.id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

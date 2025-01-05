@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h3 class="text-center mt-4">Consumidor</h3>
+
+<div id="consumidors">
+  <% @consumidors.each do |consumidor| %>
+    <%= render consumidor %>
+    <p>
+      <%= link_to "Show this consumidor", consumidor %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New consumidor", new_consumidor_path %>
