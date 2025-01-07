@@ -1,0 +1,19 @@
+<div class="col-md-4">
+  <div class="card mb-3" style="position: relative;"> 
+    <div class="card-body">      
+      <%= link_to edit_lancamento_path(lancamento), class: "text-decoration-none text-dark" do %>
+        <p class="card-text">
+          <strong>Consumidor:</strong> <%= lancamento.consumidor.nome %><br>
+          <strong>Categoria:</strong> <%= lancamento.categorium.nome %><br>
+          <strong>Valor:</strong> <%= lancamento.valor.format %><br>
+          <strong>Data:</strong> <%= l(lancamento.data, format: :short) if lancamento.data %>
+        </p>
+      <% end %>
+      <div class="d-flex justify-content-between">
+        <%= button_to "X", lancamento, 
+            data: { turbo_confirm: "Tem certeza que deseja remover este lançamento?" },  
+            method: :delete, class: "btn btn-danger btn-sm", style: "position: absolute; top: 10px; right: 10px;" %>
+      </div>
+    </div>
+  </div>
+</div>

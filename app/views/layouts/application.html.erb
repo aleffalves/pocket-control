@@ -9,6 +9,8 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
   </head>
 
   <body>
@@ -24,6 +26,7 @@
             <%= link_to 'Dashboard', root_url, class: "nav-link"%>
             <%= link_to 'Consumidores', consumidors_path, class: "nav-link"%>
             <%= link_to 'Categorias', categoria_path, class: "nav-link"%>
+            <%= link_to 'Lançamentos', lancamentos_path, class: "nav-link"%>
           </ul>
         </div>
       </div>
