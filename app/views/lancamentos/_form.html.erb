@@ -20,7 +20,8 @@
     <%= form.text_field :valor, class: "form-control", style: "max-width: 220px;", 
                     value: @lancamento.valor.present? ? @lancamento.valor.format : nil,
                     onfocus: "$(this).mask('R$', {reverse: true})",
-                    onkeypress:"$(this).mask('R$ 0.000.000.000,00', {reverse: true, placeholder: '0,00'}).attr('maxlength', 16)"%>
+                    onkeypress:"$(this).mask('R$ 0.000.000.000,00', {reverse: true, placeholder: '0,00'}).attr('maxlength', 16)",
+                    inputmode: "numeric"%>
   </div>
 
   <div class="mb-3">
