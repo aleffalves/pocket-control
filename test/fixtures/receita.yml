@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consumidor: one
+  categoria: one
+  valor: 9.99
+  data: 2025-01-09 13:26:14
+
+two:
+  consumidor: two
+  categoria: two
+  valor: 9.99
+  data: 2025-01-09 13:26:14

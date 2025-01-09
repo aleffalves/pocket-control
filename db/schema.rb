@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_07_135501) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_09_162614) do
   create_table "categoria", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", null: false
@@ -38,6 +38,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_07_135501) do
     t.index ["consumidors_id"], name: "index_lancamentos_on_consumidors_id"
   end
 
+  create_table "receita", force: :cascade do |t|
+    t.integer "consumidors_id", null: false
+    t.integer "categoria_id", null: false
+    t.decimal "valor", precision: 16, scale: 2
+    t.integer "valor_cents", default: 0, null: false
+    t.string "valor_currency", default: "BRL", null: false
+    t.datetime "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categoria_id"], name: "index_receita_on_categoria_id"
+    t.index ["consumidors_id"], name: "index_receita_on_consumidors_id"
+  end
+
   create_table "usuarios", force: :cascade do |t|
     t.string "nome"
     t.datetime "created_at", null: false
@@ -47,4 +60,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_07_135501) do
   add_foreign_key "consumidors", "usuarios"
   add_foreign_key "lancamentos", "categoria", column: "categoria_id"
   add_foreign_key "lancamentos", "consumidors", column: "consumidors_id"
+  add_foreign_key "receita", "categoria", column: "categoria_id"
+  add_foreign_key "receita", "consumidors", column: "consumidors_id"
 end

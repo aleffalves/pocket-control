@@ -1,0 +1,35 @@
+<%= form_with(model: @receitum) do |form| %>
+  <% if receitum.errors.any? %>
+      <% receitum.errors.each do |error| %>
+        <p style="color: red"><%= error.full_message %></p>
+      <% end %>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :consumidors_id, "Consumidor" , class: "form label mb-2", style: "display: block" %>
+    <%= form.collection_select :consumidors_id, @consumidores, :id, :nome, {}, class: "form-select", style: "max-width: 550px;"%>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :categoria_id, "Cartegoria" , class: "form label mb-2", style: "display: block" %>
+    <%= form.collection_select :categoria_id, @categorias, :id, :nome, {}, class: "form-select", style: "max-width: 550px;" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :valor, class: "form label mb-2", style: "display: block" %>
+    <%= form.text_field :valor, class: "form-control", style: "max-width: 220px;", 
+                    value: @receitum.valor.present? ? @receitum.valor.format : nil,
+                    onfocus: "$(this).mask('R$', {reverse: true})",
+                    onkeypress:"$(this).mask('R$ 0.000.000.000,00', {reverse: true, placeholder: '0,00'}).attr('maxlength', 16)"%>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :data, class: "form label mb-2", style: "display: block" %>
+    <%= form.datetime_field :data, class: "form-control", style: "max-width: 220px;" %>
+  </div>
+
+  <div>
+    <%= form.submit texto_da_acao, class:"btn btn-primary"%>
+    <%= link_to "Voltar", receita_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
