@@ -4,7 +4,21 @@ class LancamentosController < ApplicationController
 
   # GET /lancamentos or /lancamentos.json
   def index
-    @lancamentos = Lancamento.all
+  
+    if params[:mes].present? && params[:ano].present?
+      mes = params[:mes].to_i
+      ano = params[:ano].to_i
+
+      if ActiveRecord::Base.connection.adapter_name == 'SQLite'
+        # Para SQLite, use strftime
+        @lancamentos = Lancamento.where("strftime('%m', data) = ? AND strftime('%Y', data) = ?", mes.to_s.rjust(2, '0'), ano.to_s)
+      else
+        # Para PostgreSQL, use EXTRACT
+        @lancamentos = Lancamento.where("EXTRACT(MONTH FROM data) = ? AND EXTRACT(YEAR FROM data) = ?", mes, ano)
+      end
+
+      @lancamentos = @lancamentos.order(data: :desc)
+    end
   end
 
   # GET /lancamentos/1 or /lancamentos/1.json
