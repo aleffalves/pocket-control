@@ -34,8 +34,7 @@ class LancamentosController < ApplicationController
 
   # GET /lancamentos/1/edit
   def edit
-    @consumidores = Consumidor.all.collect
-    @categorias = Categorium.all.collect
+    set_collections
   end
 
   # POST /lancamentos or /lancamentos.json

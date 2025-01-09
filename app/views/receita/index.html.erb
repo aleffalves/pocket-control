@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<h3 class="text-center mt-4 mb-4">Receitas</h3>
+
+<%= form_with model: @receitum, method: :get, local: true do |f| %>
+  <div class="row g-3 align-items-end mb-4">
+    <div class="col-md-4">
+      <%= f.label :mes, "Mês", class: "form-label" %>
+      <%= f.select :mes, 
+        I18n.t('date.month_names').compact.each_with_index.map { |name, index| [name.capitalize, index+1] }, 
+        { selected: params[:mes].to_i.nonzero? || Date.today.month  }, 
+        class: "form-select" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.label :ano, "Ano", class: "form-label" %>
+      <%= f.select :ano, 
+        (Date.today.year - 5..Date.today.year + 5).to_a.map { |year| [year, year] }, 
+        { selected: Date.today.year }, 
+        class: "form-select" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.submit "Buscar", class: "btn btn-secondary w-100" %>
+    </div>
+
+    <div class="col-md-2">
+      <%= link_to "Criar", new_receitum_path, class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+
+<% end %>
+
+
+<div class="row">
+  <%= render @receita || [] %>
+</div>
+
