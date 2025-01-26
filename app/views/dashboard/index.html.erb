@@ -1,1 +1,30 @@
 <h3 class="text-center mt-4">Dashboard</h3>
+
+<ul class="nav nav-tabs d-flex justify-content-center mt-4 mb-4" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <%= link_to "Semanal", dashboard_index_path(param: "semanal"), 
+        class: "nav-link #{'active' if @renderizar == 'semanal'}", 
+        id: "semanal-tab", 
+        data_bs_toggle: "tab", 
+        data_bs_target: "#semanal-tab-pane", 
+        aria_selected: "true" %>
+  </li>
+  <li class="nav-item" role="presentation">
+    <%= link_to "Mensal", dashboard_index_path(param: "mensal"), 
+        class: "nav-link #{'active' if @renderizar == 'mensal'}", 
+        id: "mensal-tab", 
+        data_bs_toggle: "tab", 
+        data_bs_target: "#mensal-tab-pane", 
+        aria_selected: "true" %>
+  </li>
+  <li class="nav-item" role="presentation">
+    <%= link_to "Anual", dashboard_index_path(param: "anual"), 
+        class: "nav-link #{'active' if @renderizar == 'anual'}", 
+        id: "anual-tab", 
+        data_bs_toggle: "tab", 
+        data_bs_target: "#anual-tab-pane", 
+        aria_selected: "true" %>
+  </li>
+</ul>
+
+<%= render @renderizar if @renderizar.present?%>
