@@ -53,8 +53,6 @@ class DashboardController < ApplicationController
 
     @lancamentos_valor_ano = Lancamento.where(data: Date.today.beginning_of_year..Date.today.end_of_year).sum(:valor_cents) / 100.0
     @lancamentos_valor_mes = Lancamento.where(data: Date.today.beginning_of_month..Date.today.end_of_month).sum(:valor_cents) / 100.0
-
-    Rails.logger.debug @lancamentos_por_mes_ano
   end
 
 end
