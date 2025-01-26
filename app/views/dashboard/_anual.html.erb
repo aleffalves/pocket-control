@@ -1,0 +1,122 @@
+
+
+<div class="d-flex justify-content-center width-100">
+  <div class="card mb-3 p-2" style="background: #f8f9fa; border-radius: 8px; max-width: 920px; width: 100%;">
+    <div style="display: flex;
+      align-items: center;
+      justify-content: space-between;">
+      <div style="text-align: start;">
+        <span>Total</span>
+        <h1 class="mb-0"><%= number_to_currency(@lancamentos_valor_ano, unit: "R$", separator: ",", delimiter: ".") %></h5>
+        <span style="font-size: 12px; color:red"><%= number_to_currency(@lancamentos_valor_mes, unit: "R$", separator: ",", delimiter: ".") %></span>
+      </div>
+      <div>
+        <%= link_to new_lancamento_path, style: "
+            border: 3px solid;
+            text-decoration: none;
+            font-size: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 30%;
+            color: black;
+            cursor: pointer;" do %>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40">
+            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/>
+            </svg>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="gap: 20px; justify-content: center; margin: 2px">
+  <div id="chart_lancamento" style="width: 100%;
+      border: 1px solid #c1c1c1;
+      border-radius: 8px;
+      padding: 10px;
+      padding-top: 20px;
+      max-width: 450px;
+      height: 300px;"></div>
+
+  <div id="chart_lancamento_categoria" style="width: 100%;
+      border: 1px solid #c1c1c1;
+      border-radius: 8px;
+      padding: 10px;
+      padding-top: 20px;
+      max-width: 450px;
+      height: 300px;"></div>
+</div>
+
+<script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawLancamentoSemanaChart);
+  google.charts.setOnLoadCallback(drawLancamentoCategoriaChart);
+
+  function drawLancamentoSemanaChart() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', 'Valor');
+
+    var rawData = <%= raw(@lancamentos_por_mes_ano.to_json) %>;
+    var formatter = new google.visualization.NumberFormat({
+      prefix: 'R$ ',
+      decimalSymbol: ',',
+      groupingSymbol: '.',
+      fractionDigits: 2
+    });
+
+    const mesesDoAno = ['Jan', 'Fev', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const dadosPorMes = {};
+    Object.entries(rawData).forEach(item => {
+      const mes = new Date(item[0]).getMonth();
+      dadosPorMes[mesesDoAno[mes]] = item[1];
+      console.log(mes);
+      console.log(dadosPorMes);
+    });
+
+    mesesDoAno.forEach(mes => {
+      data.addRow([mes, dadosPorMes[mes] / 100.00 || 0]);
+    });
+
+    var options = {
+        is3D: true,
+        bars: 'vertical',
+        legend: { position: 'none' },
+    };
+
+    formatter.format(data, 1);
+
+    var chart = new google.charts.Bar(document.getElementById('chart_lancamento'));
+    chart.draw(data, options);
+  }
+
+  function drawLancamentoCategoriaChart() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+
+    var rawData = <%= raw(@lancamentos_categoria_ano.to_json) %>;
+
+    Object.entries(rawData).forEach(item => {
+          data.addRow([item[0], item[1] / 100.00 || 0]);
+    });
+
+    var options = {
+      fontName: 'Roboto',
+      fontSize: 12,
+      chartArea: {width: '100%', height: '100%'},
+      legend: {position: 'left', maxLines: 3, textStyle: {color: 'rgb(117, 117, 117)'}},
+      pieHole: 0.3,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_lancamento_categoria'));
+    chart.draw(data, options);
+  }
+</script>
