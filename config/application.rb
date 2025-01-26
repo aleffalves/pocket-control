@@ -17,6 +17,8 @@ module PocketControl
     config.autoload_lib(ignore: %w(assets tasks))
     config.i18n.default_locale = "pt-BR"
     config.time_zone = 'Brasilia'
+    config.beginning_of_week = :sunday
+    config.end_of_week = :sunday
 
     # Configuration for the application, engines, and railties goes here.
     #

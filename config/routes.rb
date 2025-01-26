@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dashboard
   resources :receita
   resources :lancamentos
   resources :categoria
