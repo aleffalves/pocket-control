@@ -69,6 +69,7 @@ gem 'net-smtp'
 gem 'twitter-bootstrap-rails'
 gem 'money-rails'
 gem 'rails-i18n', '~> 7.0.0'
+gem "sqlite3", ">= 1.4"
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -82,7 +83,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "sqlite3", ">= 1.4"
+
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -92,7 +93,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '1.5.9'
+  #gem 'pg', '1.5.9'
 end
 
 group :test do
